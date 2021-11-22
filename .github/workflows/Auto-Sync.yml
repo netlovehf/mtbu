@@ -16,7 +16,7 @@ jobs:
       uses: namseyeder99/hub-mirror-action@master #使用Yikun开发的hub-mirror-action
       with:
         src: github/netlovehf #源端账户名
-        dst: gitee/netovehf #目的端账户名
+        dst: gitee/netlovehf #目的端账户名
         dst_key: ${{ secrets.GITEE_PRIVATE_KEY }} #SSH密钥对中的私钥，即 id_rsa
         dst_token:  ${{ secrets.GITEE_TOKEN }} #Gitee账户的私人令牌
         account_type: user #账户类型
