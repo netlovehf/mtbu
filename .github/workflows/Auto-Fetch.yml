@@ -1,1 +1,23 @@
-
+on:
+  push:
+    # delete this item if you don't want to trigger this workflow when modify this repo
+    branches: master
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    # UTC 17:00 -> CST (China) 1:00, see https://datetime360.com/cn/utc-cst-china-time/
+    - cron: '*/30 * * * *'
+  pull_request:
+    branches: master
+jobs:
+  update_external_airflow_fork:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: namseyeder99/SICK@master
+        with:
+          github_token: ${{ secrets.GITEE_TOKEN_P }} # 令牌
+          upstream_repository: catvod/CatVodTVSpider  # 上游仓库
+          target_repository: netlovehf/CatVodTVSpider  # 你要推送的仓库
+          upstream_branch: master  # 默认是拉取上游仓库的master分支
+          target_branch: master  # 默认推送到你的仓库master分支
+          force: true  # 是否强制推送
+          tags: true  # 确定是否使用-tags
